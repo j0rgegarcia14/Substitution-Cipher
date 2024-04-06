@@ -1,0 +1,31 @@
+import random
+
+def cipher_key():
+    alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    key = ""
+    l = len(alphabet) - 1
+    
+    for n in range(0, l + 1):
+        key = key + alphabet.pop(random.randint(0, l))
+        l = l - 1
+    
+    return key
+
+def encrypt(plain_text, key):
+    cipher = ""
+    alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    
+    for character in plain_text:
+        if character in alphabet:
+            index = alphabet.index(character)
+            cipher = cipher + key[index]
+    
+    return cipher
+
+
+cipher_key = cipher_key()
+print("Key ->", cipher_key)
+
+plain_text = "HELLO"
+cipher_text = encrypt(plain_text.upper(), cipher_key)
+print("Cipher Text ->", cipher_text)
